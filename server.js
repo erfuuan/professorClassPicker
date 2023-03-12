@@ -1,5 +1,4 @@
 const express = require('express');
-const createHttpError = require('http-errors');
 const { MainRouter } = require('./routes/routes');
 require('dotenv').config();
 const cors = require('cors');
@@ -11,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     origin: '*'
 }))
-app.use(morgan('tiny'));
+app.use(morgan('dev'));
 app.use(MainRouter);
 app.use((req, res, next) => {
     next(createHttpError.NotFound("Route not found 🔍"))
