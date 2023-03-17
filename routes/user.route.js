@@ -2,14 +2,10 @@ const router = require('express').Router()
 const controller = require('./../controllers/index')
 
 
-// router.get("/class/:id", controller.user)
-// router.get("/class", controller)
-// router.get("/submitClass", controller)
-// router.put("/submitClass", controller)
-
-// router.get("/", controller)
-// router.put("/", controller)
-// router.delete("", controller)
-
+router.get("/class/:id", controller.user.getClass)
+router.get("/class", controller.user.getAllClass)
+router.get("/submitClass", controller.user.submitClass)
+router.get("/", controller.user.getProfile)
+router.put("/", controller.user.editProfile)
 
 module.exports = router
