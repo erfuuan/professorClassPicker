@@ -7,6 +7,7 @@ async function GetTokenFromHeader (headers) {
     const token = await headers?.authorization?.split(" ")[1] || [];
     if (token) return token;
     throw createHttpError.Unauthorized("You have to login first to access this page!");
+    
 }
 
 async function VerifyAccessToken (req, res, next) {

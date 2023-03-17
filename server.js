@@ -1,5 +1,5 @@
 const express = require('express');
-const { MainRouter } = require('./routes/routes');
+const router = require('./routes/routes');
 require('dotenv').config();
 const cors = require('cors');
 const morgan = require('morgan');
@@ -11,7 +11,8 @@ app.use(cors({
     origin: '*'
 }))
 app.use(morgan('dev'));
-app.use(MainRouter);
+app.use("/api/v1/", router);
+
 app.use((req, res, next) => {
     next(createHttpError.NotFound("Route not found 🔍"))
 })
@@ -25,4 +26,6 @@ app.use((error, req, res, next) => {
     })
 })
 
-app.listen(process.env.PORT, () => console.log('listening on: >> http://localhost:' + process.env.PORT));
+app.listen(process.env.PORT, (() =>
+    console.log('listening on: >> http://localhost:' + process.env.PORT))
+);

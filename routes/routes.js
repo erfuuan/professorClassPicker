@@ -1,12 +1,11 @@
-const httpStatus = require("http-status");
-const { SendResponse } = require("../utils/SendResponse");
+const router = require("express").Router();
 
-const MainRouter = require("express").Router();
+const auth = require("./auth.route")
+const admin = require("./admin.route")
+const user = require("./user.route")
 
-MainRouter.get("/", (req, res) => {
-    return SendResponse(res, httpStatus.OK, true, "Index Page")
-})
+router.use("/auth", auth)
+router.use("/admin", admin)
+router.use("/user", user)
 
-module.exports = {
-    MainRouter
-}
+module.exports = router

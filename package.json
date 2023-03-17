@@ -2,10 +2,11 @@
   "name": "professorclasspicker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +18,10 @@
     "helmet": "^6.0.1",
     "jalali-moment": "^3.3.11",
     "jsonwebtoken": "^9.0.0",
+    "moment": "^2.29.4",
+    "moment-jalali": "^0.3.9",
     "mongoose": "^7.0.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.21"
   }
 }

@@ -1,18 +1,26 @@
 
 module.exports = {
     class: {
-        getOne: {},
-        getAll: {},
-        create: {},
-        update: {},
-        delete: {}
+        getOne: async (req, res) => { },
+
+        getAll: async (req, res) => { },
+        create: async (req, res) => { },
+        update: async (req, res) => { },
+        delete: async (req, res) => { },
     },
     user: {
-        getOne: {},
-        getAll: {},
-        create: {},
-        update: {},
-        delete: {}
+        getOne: async (req, res) => { },
+        getAll: async (req, res) => { },
+        create: async (req, res) => { },
+        update: async (req, res) => { },
+        delete: async (req, res) => { },
     },
-    bind: {}
+    bind: async (req, res) => { },
+    lesson: {
+        getOne: async (req, res) => { },
+        getAll: async (req, res) => { },
+        create: async (req, res) => { },
+        update: async (req, res) => { },
+        delete: async (req, res) => { },
+    }
 }

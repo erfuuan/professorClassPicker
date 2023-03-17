@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Options = require("./optionModel")
+const Options = require("./option.model")
 const moment = require('moment-jalali')
 
 const classSchema = new mongoose.Schema({
@@ -11,7 +11,8 @@ const classSchema = new mongoose.Schema({
         required: true
     },
     registerDate: { type: Number, required: true, default: moment(new Date()).format('X') },
-    teacherId: { type: mongoose.Types.ObjectId, ref: 'User', Number, required: true },
+    time: { type: Array, required: true },
+    teacherId: { type: mongoose.Types.ObjectId, ref: 'User', Number },
     index: { type: String, required: true },
     softDelete: { type: Boolean, required: true, default: false }
 

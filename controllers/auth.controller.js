@@ -1,8 +1,8 @@
 
-const functions = require("../library/functions");
+// const functions = require("../library/functions");
 const Service = require('../service/index')
 const Model = require('../models/index')
-const resBuilder = require("../library/responseBuilder");
+const resBuilder = require("../utils/responseBiulder");
 module.exports = {
 
     createData: async (req, res) => {

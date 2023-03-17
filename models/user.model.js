@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 const userSchema = new mongoose.Schema({
     name: { type: String, required: true },
     mobile: { type: Number, required: true },
@@ -13,7 +14,8 @@ const userSchema = new mongoose.Schema({
     //     type: mongoose.Types.ObjectId,
     //     ref: 'File',
     // },
-    softDelete: { type: Boolean, required: true, default: false }
+    softDelete: { type: Boolean, required: true, default: false },
+    active: { type: Boolean, required: true, default: true }
 },
     { timestamps: true }
 );

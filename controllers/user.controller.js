@@ -1,4 +1,5 @@
 
 module.exports = {
-    bind: {}
+    bind: async (req, res) => { },
+
 }
