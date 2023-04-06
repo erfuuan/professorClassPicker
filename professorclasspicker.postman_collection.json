@@ -1,0 +1,447 @@
+{
+	"info": {
+		"_postman_id": "ffa81212-4a4f-417b-a44c-db9c21be8a60",
+		"name": "professorclasspicker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16025267"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "mobile",
+									"value": "9305087411",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "erfan.at799@gmail.com",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": []
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "class",
+					"item": [
+						{
+							"name": "getAll",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyMTg4MDRlZmE2MDVkYWY4NTg4NCIsImlhdCI6MTY4MDgxMDc4MSwiZXhwIjoxNjg5NDUwNzgxfQ.kjXrLp6XZHLOl1W9KNsLA63JFaYrkiMJhe6WOJKrIpg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:5000/api/v1/admin/class",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"class"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getOne",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyMTg4MDRlZmE2MDVkYWY4NTg4NCIsImlhdCI6MTY4MDgxMDc4MSwiZXhwIjoxNjg5NDUwNzgxfQ.kjXrLp6XZHLOl1W9KNsLA63JFaYrkiMJhe6WOJKrIpg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:5000/api/v1/admin/class/642f26f605cd5a3285d20da",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"class",
+										"642f26f605cd5a3285d20da"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyMTg4MDRlZmE2MDVkYWY4NTg4NCIsImlhdCI6MTY4MDgxMDc4MSwiZXhwIjoxNjg5NDUwNzgxfQ.kjXrLp6XZHLOl1W9KNsLA63JFaYrkiMJhe6WOJKrIpg",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "title",
+											"value": "dfsfsddff",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "weowwrf ee geger fr3w r g",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:5000/api/v1/admin/class",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"class"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyMTg4MDRlZmE2MDVkYWY4NTg4NCIsImlhdCI6MTY4MDgxMDc4MSwiZXhwIjoxNjg5NDUwNzgxfQ.kjXrLp6XZHLOl1W9KNsLA63JFaYrkiMJhe6WOJKrIpg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "title",
+											"value": "sex ",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "sex sex sex sex",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:5000/api/v1/admin/class/642f27c48d6eacfb2dacd077",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"class",
+										"642f27c48d6eacfb2dacd077"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:5000/api/v1/admin/class/642f27c48d6eacfb2dacd077",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"class",
+										"642f27c48d6eacfb2dacd077"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "user",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyMTg4MDRlZmE2MDVkYWY4NTg4NCIsImlhdCI6MTY4MDgxMzU2OSwiZXhwIjoxNjg5NDUzNTY5fQ.aHs1SjHpoLT75CxtyVPOwhiJ0g-FeVdqAKG4i-HAgxc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "fdsdsgwrsdf",
+											"type": "text"
+										},
+										{
+											"key": "mobile",
+											"value": "111111111114",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:5000/api/v1/admin/user",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAll",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyMTg4MDRlZmE2MDVkYWY4NTg4NCIsImlhdCI6MTY4MDgxMzU2OSwiZXhwIjoxNjg5NDUzNTY5fQ.aHs1SjHpoLT75CxtyVPOwhiJ0g-FeVdqAKG4i-HAgxc",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:5000/api/v1/admin/user",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getOne",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyMTg4MDRlZmE2MDVkYWY4NTg4NCIsImlhdCI6MTY4MDgxMzU2OSwiZXhwIjoxNjg5NDUzNTY5fQ.aHs1SjHpoLT75CxtyVPOwhiJ0g-FeVdqAKG4i-HAgxc",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:5000/api/v1/admin/user/642f30b786adf045122cff70",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"user",
+										"642f30b786adf045122cff70"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyMTg4MDRlZmE2MDVkYWY4NTg4NCIsImlhdCI6MTY4MDgxMzU2OSwiZXhwIjoxNjg5NDUzNTY5fQ.aHs1SjHpoLT75CxtyVPOwhiJ0g-FeVdqAKG4i-HAgxc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "sex",
+											"type": "text"
+										},
+										{
+											"key": "mobile",
+											"value": "111111111114",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:5000/api/v1/admin/user/642f2e5983b2f6b8f04d96fc",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"user",
+										"642f2e5983b2f6b8f04d96fc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyMTg4MDRlZmE2MDVkYWY4NTg4NCIsImlhdCI6MTY4MDgxMzU2OSwiZXhwIjoxNjg5NDUzNTY5fQ.aHs1SjHpoLT75CxtyVPOwhiJ0g-FeVdqAKG4i-HAgxc",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:5000/api/v1/admin/user/642f2c0a02f11d9e541a7c92",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"user",
+										"642f2c0a02f11d9e541a7c92"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "lesson",
+					"item": []
+				}
+			]
+		},
+		{
+			"name": "create data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/v1/auth/createData",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"createData"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

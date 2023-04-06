@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const Options = require("./option.model")
 const moment = require('moment-jalali')
+const { v4: uuidv4 } = require('uuid');
+
 
 const classSchema = new mongoose.Schema({
     title: { type: String, required: true, unique: true },
@@ -13,7 +14,7 @@ const classSchema = new mongoose.Schema({
     registerDate: { type: Number, required: true, default: moment(new Date()).format('X') },
     time: { type: Array, required: true },
     teacherId: { type: mongoose.Types.ObjectId, ref: 'User', Number },
-    index: { type: String, required: true },
+    index: { type: String},
     softDelete: { type: Boolean, required: true, default: false }
 
 },
@@ -21,14 +22,11 @@ const classSchema = new mongoose.Schema({
 );
 classSchema.pre('save', async function (next) {
     var date = moment(new Date()).format('jYYYY-jMM')
-    const raw = await Options.findOne({ key: 'classIndex' });
-    const rawIndex = raw.value
-    const id = raw._id
-    const index = parseInt(rawIndex) + 1
-    this.index = index + "-" + date + "-" + this.status;
-    await Options.findByIdAndUpdate(id, { value: index }, {
-        new: true,
-    });
+    const rawIndex = uuidv4().split("-")[0]
+    console.log(rawIndex)
+    const index = (rawIndex)
+    this.index = index + "-" + date + "-" ;
+
     next();
 });
 

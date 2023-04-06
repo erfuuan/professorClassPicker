@@ -98,7 +98,10 @@ module.exports = {
     delete: async (schema, dataId, data) => {
         try {
             const dataSchema = Model[schema]
-            await dataSchema.findByIdAndUpdate(dataId, data)
+            console.log(data)
+            await dataSchema.findByIdAndUpdate(dataId, data, { new: true })
+            // const deletedData=await dataSchema.findByIdAndRemove(dataId)
+            // const deletedData = await dataSchema.deleteOne({ _id: dataId })
             return true
         } catch (err) {
             console.log(err)

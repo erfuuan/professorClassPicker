@@ -20,6 +20,16 @@ module.exports = {
         return response.status(200).send({ response: res });
     },
 
+    created: function (response, data, message) {
+        const res = {
+            status: '200',
+            data: data ? data : undefined,
+            message: message ? message : undefined,
+        };
+        // res.message = res.message;
+        return response.status(201).send({ response: res });
+    },
+
     conflict: function (response, data, message) {
         const res = {
             status: '409',
@@ -40,7 +50,6 @@ module.exports = {
     },
 
     internal: function (response, message) {
-        console.error(error);
         const res = {
             status: '500',
             error: 'internal',

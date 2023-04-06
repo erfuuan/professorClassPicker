@@ -1,2 +1,3 @@
 const CRUD = require("./crud.service")
-module.exports = { CRUD }
+const CRYPTOGRAPHY = require("./cryptography.service")
+module.exports = { CRUD, CRYPTOGRAPHY }

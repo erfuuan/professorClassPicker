@@ -8,13 +8,15 @@ const userSchema = new mongoose.Schema({
     role: { type: String, enum: ['admin', 'teacher'], required: true },
     email: { type: String },
     // natCode: {type:Number,require:true},
-    gender: { type: String, enum: ['female', 'male'], },
+    // gender: { type: String, enum: ['female', 'male'], },
     registerDate: { type: Number, required: true, default: moment(new Date()).format('X') },
     // avatarId: {
     //     type: mongoose.Types.ObjectId,
     //     ref: 'File',
     // },
     softDelete: { type: Boolean, required: true, default: false },
+    // softDelete: { type: Boolean, required: true},
+
     active: { type: Boolean, required: true, default: true }
 },
     { timestamps: true }
