@@ -43,15 +43,10 @@ module.exports = {
                 // data.authorId = req.userData._id
                 // const newClass = await Service.CRUD.create("Class", data)
                 req.body.status = "open"
-
-
-
-                const claass = await Service.CRUD.getAll('Class',
+                const claassExist = await Service.CRUD.getAll('Class',
                     { softDelete: false, title: req.body.title, }, "",
                     { 'createdAt': -1 }, { softDelete: 0, createdAt: 0, updatedAt: 0 })
-
-
-
+                // if (claassExist) { return resBuilder.}
 
                 const newClass = await Service.CRUD.create("Class", req.body)
 
