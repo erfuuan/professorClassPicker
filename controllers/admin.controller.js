@@ -44,12 +44,10 @@ module.exports = {
                 // const newClass = await Service.CRUD.create("Class", data)
                 req.body.status = "open"
                 const claassExist = await Service.CRUD.getAll('Class',
-                    { softDelete: false, title: req.body.title, }, "",
-                    { 'createdAt': -1 }, { softDelete: 0, createdAt: 0, updatedAt: 0 })
-                // if (claassExist) { return resBuilder.}
+                    { softDelete: false, title: req.body.title }, "")
+                if (claassExist.length) { return resBuilder.conflict(res, req.body, "کلاسی با این عنوان در سامانه وجود دارد.") }
 
                 const newClass = await Service.CRUD.create("Class", req.body)
-
                 return resBuilder.created(res, newClass, " کلاس شما با موفقیت ایجاد شد.")
             } catch (err) {
                 console.log(err)
@@ -80,6 +78,10 @@ module.exports = {
         },
         delete: async (req, res) => {
             try {
+                const claassExist = await Service.CRUD.getAll('Class',
+                    { softDelete: false, title: req.body.title }, "")
+                if (!claassExist.length) { return resBuilder.notFound(res, "کلاسی با این عنوان در سامانه وجود ندارد.") }
+
                 await Service.CRUD.delete("Class", req.params.id, { softDelete: true })
                 return resBuilder.success(res, "", ". کلاس با موفقیت حذف شد")
             } catch (err) {

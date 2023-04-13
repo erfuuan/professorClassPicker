@@ -1,5 +1,8 @@
 const resBiulder = require("../utils/responseBiulder")
 const jwt = require("jsonwebtoken")
+
+const Service = require('../service/index')
+const resBuilder = require('../utils/responseBiulder')
 module.exports = {
     authentication: function (req, res, next) {
         // Gather the jwt access token from the request header
@@ -16,8 +19,30 @@ module.exports = {
             // return res.status(403).send('نشست شما در سامانه منقضی شده است، لطفا مجددا به سامانه ورود نمایید.')
             req.userId = userId.username
             // console.log('req.userId', req.userId)
-            next() // pass the execution off to whatever request the client intended
+            return next()
         })
     },
+
+    checkUserExist: async (req, res, next) => {
+        const userData = await Service.CRUD.findById('User', req.userId, [])
+        req.userData = userData
+        return next()
+    },
+
+    checkUserRole: async (req, res, next) => {
+        if (req.userData.role == "teacher") {
+            return next()
+        } else {
+            return resBiulder.forbidden(res, "شمابه این بخش از سامانه دسترسی ندارید")
+        }
+    },
+
+    checkAdminRole: async (req, res, next) => {
+        if (req.userData.role == "admin") {
+            return next()
+        } else {
+            return resBiulder.forbidden(res, "شمابه این بخش از سامانه دسترسی ندارید")
+        }
+    }
 
 }
