@@ -19,7 +19,7 @@ module.exports = {
             const data = await dataSchema.findOne({ _id: dataId })
 
                 .populate(populate)
-            // .lean();
+                .lean();
             // data.createdAt = moment(data.createdAt, "X").format("jYYYY/jMM/jDD HH:mm")
             // data.updatedAt = moment(data.updatedAt, "X").format("jYYYY/jMM/jDD HH:mm")
             if (data) {

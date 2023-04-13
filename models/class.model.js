@@ -18,7 +18,8 @@ const classSchema = new mongoose.Schema({
     softDelete: { type: Boolean, required: true, default: false }
 
 },
-    { timestamps: true }
+{ timestamps: true, versionKey: false }
+
 );
 classSchema.pre('save', async function (next) {
     var date = moment(new Date()).format('jYYYY-jMM')

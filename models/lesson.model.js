@@ -4,10 +4,11 @@ const moment = require('moment-jalali')
 const lessonSchema = new mongoose.Schema({
     title: { type: String, required: true, unique: true },
     description: { type: String },
-    registerDate: { type: Number, required: true, default: moment(new Date()).format('X') },
-    softDelete: { type: Boolean, required: true, default: false }
+    registerDate: { type: Number, default: moment(new Date()).format('X') },
+    softDelete: { type: Boolean, default: false }
 },
-    { timestamps: true }
+    { timestamps: true, versionKey: false }
+
 );
 
 const Lesson = mongoose.model('Lesson', lessonSchema);

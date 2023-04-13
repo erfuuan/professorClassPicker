@@ -1,5 +1,5 @@
 const resBiulder = require("../utils/responseBiulder")
-const jwt=require("jsonwebtoken")
+const jwt = require("jsonwebtoken")
 module.exports = {
     authentication: function (req, res, next) {
         // Gather the jwt access token from the request header

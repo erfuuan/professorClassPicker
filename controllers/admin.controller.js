@@ -1,5 +1,6 @@
 const Service = require('../service/index')
 const resBuilder = require('../utils/responseBiulder')
+const moment = require('moment-jalali')
 
 module.exports = {
 
@@ -10,6 +11,8 @@ module.exports = {
                 const classData = await Service.CRUD.findById('Class', req.params.id, [])
                 if (!classData || classData.softDelete) { return resBuilder.notFound(res, "این کلاس حدف شده است") }
                 delete classData.softDelete
+                delete classData.createdAt
+                delete classData.updatedAt
                 return resBuilder.success(res, classData, "")
             } catch (error) {
                 console.log("error for find a post === > ", error)
@@ -21,8 +24,11 @@ module.exports = {
                 const claass = await Service.CRUD.getAll('Class',
                     { softDelete: false },
                     "",
-                    { 'createdAt': -1 }, { softDelete: 0 })
+                    { 'createdAt': -1 }, { softDelete: 0, createdAt: 0, updatedAt: 0 })
                 if (claass.length == 0) { return resBuilder.success(res, [], '') }
+                claass.forEach(element => {
+                    element.registerDate = moment(element.registerDate, 'X').format('jYYYY/jMM/jDD')
+                });
                 return resBuilder.success(res, claass, "")
             } catch (err) {
                 console.log(err)
@@ -37,6 +43,16 @@ module.exports = {
                 // data.authorId = req.userData._id
                 // const newClass = await Service.CRUD.create("Class", data)
                 req.body.status = "open"
+
+
+
+                const claass = await Service.CRUD.getAll('Class',
+                    { softDelete: false, title: req.body.title, }, "",
+                    { 'createdAt': -1 }, { softDelete: 0, createdAt: 0, updatedAt: 0 })
+
+
+
+
                 const newClass = await Service.CRUD.create("Class", req.body)
 
                 return resBuilder.created(res, newClass, " کلاس شما با موفقیت ایجاد شد.")
@@ -167,11 +183,10 @@ module.exports = {
         getAll: async (req, res) => {
             try {
                 const lessons = await Service.CRUD.getAll('Lesson',
-                    { softDelete: false },
-                    "",
+                    { softDelete: false }, "",
                     { 'createdAt': -1 }, { softDelete: 0 })
                 if (lessons.length == 0) { return resBuilder.success(res, [], '') }
-                return resBuilder.success(res, claass, "")
+                return resBuilder.success(res, lessons, "")
             } catch (err) {
                 console.log(err)
                 return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
@@ -186,7 +201,7 @@ module.exports = {
                 // data.authorId = req.userData._id
                 // const newClass = await Service.CRUD.create("Class", data)
                 const newLesson = await Service.CRUD.create("Lesson", req.body)
-                return resBuilder.created(res, newLesson, " کلاس شما با موفقیت ایجاد شد.")
+                return resBuilder.created(res, newLesson, " درس شما با موفقیت ایجاد شد.")
             } catch (err) {
                 console.log(err)
                 return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
@@ -206,7 +221,7 @@ module.exports = {
                     req.params.id,
                     [],
                     { softDelete: 0 })
-                return resBuilder.success(res, updatedLesson, ".کلاس  شما با موفقیت ویرایش شد")
+                return resBuilder.success(res, updatedLesson, ".درس  شما با موفقیت ویرایش شد")
             } catch (err) {
                 console.log(err)
                 return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
@@ -216,7 +231,7 @@ module.exports = {
         delete: async (req, res) => {
             try {
                 await Service.CRUD.delete("Lesson", req.params.id, { softDelete: true })
-                return resBuilder.success(res, "", ". کلاس با موفقیت حذف شد")
+                return resBuilder.success(res, "", ". درس با موفقیت حذف شد")
             } catch (err) {
                 console.log(err)
                 return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")

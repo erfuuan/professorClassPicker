@@ -5,7 +5,8 @@ const optionSchema = new mongoose.Schema({
     value: String,
     softDelete: { type: Boolean, required: true, default: false }
 },
-    { timestamps: true }
+{ timestamps: true, versionKey: false }
+
 );
 
 const Option = mongoose.model('Option', optionSchema);
