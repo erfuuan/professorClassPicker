@@ -190,7 +190,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyMTg4MDRlZmE2MDVkYWY4NTg4NCIsImlhdCI6MTY4MDgxMDc4MSwiZXhwIjoxNjg5NDUwNzgxfQ.kjXrLp6XZHLOl1W9KNsLA63JFaYrkiMJhe6WOJKrIpg",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MzgxNmQ0NjcyMjRlOWRiZTIxMzQ3YSIsImlhdCI6MTY4MTQyNDkyMSwiZXhwIjoxNjkwMDY0OTIxfQ.beqV8ipcjH1itZfyhOZR-6KSGWTntHoWldeM8W9YGaI",
 								"type": "text"
 							}
 						],
@@ -253,7 +253,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyMTg4MDRlZmE2MDVkYWY4NTg4NCIsImlhdCI6MTY4MDgxMDc4MSwiZXhwIjoxNjg5NDUwNzgxfQ.kjXrLp6XZHLOl1W9KNsLA63JFaYrkiMJhe6WOJKrIpg",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyYzBhMDJmMTFkOWU1NDFhN2M5MiIsImlhdCI6MTY4MTQyNTQxMywiZXhwIjoxNjkwMDY1NDEzfQ.TqPV_6HcZJ3lCnf1fjXtURz4uqeinIYM8QssxmVkKpM",
 										"type": "text"
 									}
 								],
@@ -368,7 +368,13 @@
 							"name": "delete",
 							"request": {
 								"method": "DELETE",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyMTg4MDRlZmE2MDVkYWY4NTg4NCIsImlhdCI6MTY4MDgxMDc4MSwiZXhwIjoxNjg5NDUwNzgxfQ.kjXrLp6XZHLOl1W9KNsLA63JFaYrkiMJhe6WOJKrIpg",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "localhost:5000/api/v1/admin/class/642f27c48d6eacfb2dacd077",
 									"host": [
@@ -745,6 +751,32 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "check-token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyYzBhMDJmMTFkOWU1NDFhN2M5MiIsImlhdCI6MTY4MTQ4Mjc5MSwiZXhwIjoxNjkwMTIyNzkxfQ.Ynu6JGEGf2De8IV-XNA0N4D3HfYPTID4C3uiyw2n4Wo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:5000/api/v1/check-token",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"v1",
+						"check-token"
+					]
+				}
+			},
+			"response": []
 		},
 		{
 			"name": "create data",
