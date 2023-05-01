@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     activationCode: Number,
     role: { type: String, enum: ['admin', 'teacher'], required: true },
-    email: { type: String },
+    email: { type: String,required: true  },
     // natCode: {type:Number,require:true},
     // gender: { type: String, enum: ['female', 'male'], },
     registerDate: { type: Number, required: true, default: moment(new Date()).format('X') },
