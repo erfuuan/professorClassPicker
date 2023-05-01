@@ -106,7 +106,7 @@ module.exports = {
         getAll: async (req, res) => {
             try {
                 const users = await Service.CRUD.getAll('User',
-                    { softDelete: false },
+                    { softDelete: false ,role:"teacher"},
                     "",
                     { 'createdAt': -1 }, { softDelete: 0 })
                 if (users.length == 0) { return resBuilder.success(res, [], '') }
@@ -154,7 +154,7 @@ module.exports = {
         },
         delete: async (req, res) => {
             try {
-                await Service.CRUD.delete("Class", req.params.id, { "softDelete": true })
+                await Service.CRUD.delete("User", req.params.id, { softDelete: true })
                 return resBuilder.success(res, "", ". استاد با موفقیت حذف شد")
             } catch (err) {
                 console.log(err)

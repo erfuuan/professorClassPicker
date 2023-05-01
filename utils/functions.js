@@ -25,6 +25,7 @@ module.exports = {
 
     checkUserExist: async (req, res, next) => {
         const userData = await Service.CRUD.findById('User', req.userId, [])
+        if(!userData){return resBiulder.notFound(res,'خطا کاربر یافت نشد !')}
         req.userData = userData
         return next()
     },

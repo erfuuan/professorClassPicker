@@ -100,6 +100,23 @@ module.exports = {
             const dataSchema = Model[schema]
             console.log(data)
             await dataSchema.findByIdAndUpdate(dataId, data, { new: true })
+            // await dataSchema.findByIdAndUpdate(dataId, data )
+
+
+            // const deletedData=await dataSchema.findByIdAndRemove(dataId)
+            // const deletedData = await dataSchema.deleteOne({ _id: dataId })
+            return true
+        } catch (err) {
+            console.log(err)
+            console.log('err from @delete crudService zone')
+            throw err
+        }
+    },
+    purgeDelete: async (schema, dataId, data) => {
+        try {
+            const dataSchema = Model[schema]
+            console.log(data)
+            await dataSchema.delete
             // const deletedData=await dataSchema.findByIdAndRemove(dataId)
             // const deletedData = await dataSchema.deleteOne({ _id: dataId })
             return true
