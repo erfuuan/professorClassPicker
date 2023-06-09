@@ -7,7 +7,7 @@ module.exports = {
     getClass: async (req, res) => {
         try {
             let classData = {}
-            classData = await Service.CRUD.findById('Class', req.params.id, [])
+            classData = await Service.CRUD.findById('Class', req.params.id, ['teacherId'])
             if (!classData || classData.softDelete) { return resBuilder.notFound(res, "این کلاس حدف شده است") }
             delete classData.softDelete
             delete classData.createdAt
@@ -35,6 +35,7 @@ module.exports = {
             return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
         }
     },
+
     getAllLesson: async (req, res) => {
         try {
             let lessons = {}
@@ -52,7 +53,25 @@ module.exports = {
         }
     },
 
-    // submitClass: async (req, res) => { },
+    submitClass: async (req, res) => {
+        const classExist = await Service.CRUD.findById('Class', req.params.classId, "")
+        if (!classExist) { return resBuilder.notFound(res, "کلاسی با این شناسه یافت نشد") }
+        const checkClassTimeConflict = await Service.CRUD.find('Class', { teacherId: req.userId }, [], "", "")
+        if (checkClassTimeConflict) {
+            console.log(checkClassTimeConflict)
+            if (checkClassTimeConflict[0].day == classExist.day) {
+                console.log("class in One Day")
+
+            }
+        }
+
+        await Service.CRUD.updateById('Class', { teacherId: req.userId }, req.body.classId, [], "")
+        const classExistAssigend = await Service.CRUD.findById('Class', req.body.classId, ['teacherId'])
+
+        resBuilder.success(res, classExistAssigend, "کلاس با موفقیت به شما تخصیص داده شد.")
+
+    },
+
     getProfile: async (req, res) => {
         try {
             // const playlistData = await Service.CRUD.findById('PlayList', req.params.id, ['fileIds', 'authorId', 'tagIds', 'categoryIds'])
