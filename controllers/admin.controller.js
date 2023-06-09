@@ -51,12 +51,11 @@ module.exports = {
                 req.body.startTime = moment(req.body.startTime, "jYYYY/jMM/jDD HH:mm").format("X")
                 req.body.endTime = moment(req.body.endTime, "jYYYY/jMM/jDD HH:mm").format("X")
 
-                const claassExist = await Service.CRUD.getAll('Class',
-                    { softDelete: false, title: req.body.title }, "")
-
-                if (claassExist.length) {
-                     return resBuilder.conflict(res, req.body, "کلاسی با این عنوان در سامانه وجود دارد.")                    
-                }
+                // const claassExist = await Service.CRUD.getAll('Class',
+                //     { softDelete: false, title: req.body.title }, "")
+                // if (claassExist.length) {
+                //      return resBuilder.conflict(res, req.body, "کلاسی با این عنوان در سامانه وجود دارد.")                    
+                // }
 
 
                 const newClass = await Service.CRUD.create("Class", req.body)
@@ -214,7 +213,7 @@ module.exports = {
 
 
 
-                
+
             //     const lessonExist = await Service.CRUD.getAll('Lesson',
             //     { softDelete: false, title: req.body.title }, "")
 

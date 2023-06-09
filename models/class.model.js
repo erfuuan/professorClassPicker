@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 
 
 const classSchema = new mongoose.Schema({
-    title: { type: String, required: true, unique: true },
+    title: { type: String, required: true},
     description: { type: String, required: true },
     status: {
         type: String,
