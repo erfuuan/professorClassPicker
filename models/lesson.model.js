@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 
 
 const lessonSchema = new mongoose.Schema({
-    title: { type: String, required: true, unique: true },
+    title: { type: String, required: true },
     description: { type: String },
     registerDate: { type: Number, default: moment(new Date()).format('X') },
     index: { type: String},

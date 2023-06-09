@@ -12,13 +12,15 @@ const classSchema = new mongoose.Schema({
         required: true
     },
     registerDate: { type: Number, required: true, default: moment(new Date()).format('X') },
-    time: { type: Array, required: true },
+    startTime: { type: Number, required: true },
+    endTime: { type: Number, required: true },
+    gender: { type: String, required: true, enum: ['boy', 'girl', 'all'] },
+    day: { type: String, require: true, enum: ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"] },
     teacherId: { type: mongoose.Types.ObjectId, ref: 'User', Number },
-    index: { type: String},
+    index: { type: String },
     softDelete: { type: Boolean, required: true, default: false }
-
 },
-{ timestamps: true, versionKey: false }
+    { timestamps: true, versionKey: false }
 
 );
 classSchema.pre('save', async function (next) {
@@ -26,7 +28,7 @@ classSchema.pre('save', async function (next) {
     const rawIndex = uuidv4().split("-")[0]
     console.log(rawIndex)
     const index = (rawIndex)
-    this.index = index + "-" + date + "-" ;
+    this.index = index + "-" + date + "-";
 
     next();
 });

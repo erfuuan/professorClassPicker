@@ -1,6 +1,9 @@
 const Service = require('../service/index')
 const resBuilder = require('../utils/responseBiulder')
-const moment = require('moment-jalali')
+var moment = require("jalali-moment");
+
+// const moment = require('moment')
+
 
 module.exports = {
 
@@ -27,7 +30,9 @@ module.exports = {
                     { 'createdAt': -1 }, { softDelete: 0, createdAt: 0, updatedAt: 0 })
                 if (claass.length == 0) { return resBuilder.success(res, [], '') }
                 claass.forEach(element => {
-                    element.registerDate = moment(element.registerDate, 'X').format('jYYYY/jMM/jDD')
+                    element.registerDate = moment(element.registerDate, 'X').format('jYYYY/jMM/jDD HH:mm')
+                    element.startTime = moment(element.startTime, 'X').format('jYYYY/jMM/jDD HH:mm')
+                    element.endTime = moment(element.endTime, 'X').format('jYYYY/jMM/jDD HH:mm')
                 });
                 return resBuilder.success(res, claass, "")
             } catch (err) {
@@ -43,9 +48,16 @@ module.exports = {
                 // data.authorId = req.userData._id
                 // const newClass = await Service.CRUD.create("Class", data)
                 req.body.status = "open"
+                req.body.startTime = moment(req.body.startTime, "jYYYY/jMM/jDD HH:mm").format("X")
+                req.body.endTime = moment(req.body.endTime, "jYYYY/jMM/jDD HH:mm").format("X")
+
                 const claassExist = await Service.CRUD.getAll('Class',
                     { softDelete: false, title: req.body.title }, "")
-                if (claassExist.length) { return resBuilder.conflict(res, req.body, "کلاسی با این عنوان در سامانه وجود دارد.") }
+
+                if (claassExist.length) {
+                     return resBuilder.conflict(res, req.body, "کلاسی با این عنوان در سامانه وجود دارد.")                    
+                }
+
 
                 const newClass = await Service.CRUD.create("Class", req.body)
                 return resBuilder.created(res, newClass, " کلاس شما با موفقیت ایجاد شد.")
@@ -185,7 +197,7 @@ module.exports = {
                 if (lessons.length == 0) { return resBuilder.success(res, [], '') }
                 const lessonCom = lessons.map(lesson => { return { ...lesson, show: `${lesson.title}(${lesson.description})` } })
                 return resBuilder.success(res, lessonCom, "")
-            
+
             } catch (err) {
                 console.log(err)
                 return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
@@ -199,6 +211,18 @@ module.exports = {
                 // const data = await Joi.attempt(result.value, Schema.playListValidation.createSchema)
                 // data.authorId = req.userData._id
                 // const newClass = await Service.CRUD.create("Class", data)
+
+                const lessonExist = await Service.CRUD.getAll('Lesson',
+                { softDelete: false, title: req.body.title }, "")
+
+            if (claassExist.length) {
+                 return resBuilder.conflict(res, req.body, "کلاسی با این عنوان در سامانه وجود دارد.")                    
+            }
+
+
+
+
+
                 const newLesson = await Service.CRUD.create("Lesson", req.body)
                 return resBuilder.created(res, newLesson, " درس شما با موفقیت ایجاد شد.")
             } catch (err) {
