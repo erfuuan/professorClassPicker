@@ -106,7 +106,7 @@ module.exports = {
         getAll: async (req, res) => {
             try {
                 const users = await Service.CRUD.getAll('User',
-                    { softDelete: false ,role:"teacher"},
+                    { softDelete: false, role: "teacher" },
                     "",
                     { 'createdAt': -1 }, { softDelete: 0 })
                 if (users.length == 0) { return resBuilder.success(res, [], '') }
@@ -183,7 +183,9 @@ module.exports = {
                     { softDelete: false }, "",
                     { 'createdAt': -1 }, { softDelete: 0 })
                 if (lessons.length == 0) { return resBuilder.success(res, [], '') }
-                return resBuilder.success(res, lessons, "")
+                const lessonCom = lessons.map(lesson => { return { ...lesson, show: `${lesson.title}(${lesson.description})` } })
+                return resBuilder.success(res, lessonCom, "")
+            
             } catch (err) {
                 console.log(err)
                 return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")

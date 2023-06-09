@@ -44,7 +44,8 @@ module.exports = {
             lessons.forEach(element => {
                 element.registerDate = moment(element.registerDate, 'X').format('jYYYY/jMM/jDD')
             })
-            return resBuilder.success(res, lessons, "")
+            const lessonCom = lessons.map(lesson => { return { ...lesson, show: `${lesson.title}(${lesson.description})` } })
+            return resBuilder.success(res, lessonCom, "")
         } catch (err) {
             console.log(err)
             return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
