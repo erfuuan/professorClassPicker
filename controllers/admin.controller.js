@@ -212,12 +212,15 @@ module.exports = {
                 // data.authorId = req.userData._id
                 // const newClass = await Service.CRUD.create("Class", data)
 
-                const lessonExist = await Service.CRUD.getAll('Lesson',
-                { softDelete: false, title: req.body.title }, "")
 
-            if (claassExist.length) {
-                 return resBuilder.conflict(res, req.body, "کلاسی با این عنوان در سامانه وجود دارد.")                    
-            }
+
+                
+            //     const lessonExist = await Service.CRUD.getAll('Lesson',
+            //     { softDelete: false, title: req.body.title }, "")
+
+            // if (claassExist.length) {
+            //      return resBuilder.conflict(res, req.body, "کلاسی با این عنوان در سامانه وجود دارد.")                    
+            // }
 
 
 
