@@ -7,14 +7,24 @@ module.exports = {
 
     createData: async (req, res) => {
         try {
+            // const user = await Model.User.create({
+            //     name: "erfan",
+            //     username: "erfuuan",
+            //     mobile: "09305087411",
+            //     email: "erfan.at799@gmail.com",
+            //     password: Service.CRYPTOGRAPHY.md5("12345678"),
+            //     gender: "male",
+            //     role: "admin",
+            //     softDelete: false
+            // })
             const user = await Model.User.create({
                 name: "erfan",
                 username: "erfuuan",
-                mobile: "09305087411",
+                mobile: "11111111111",
                 email: "erfan.at799@gmail.com",
                 password: Service.CRYPTOGRAPHY.md5("12345678"),
                 gender: "male",
-                role: "admin",
+                role: "teacher",
                 softDelete: false
             })
             res.status(201).send(user)
