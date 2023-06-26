@@ -14,7 +14,8 @@ module.exports = {
                 email: "erfan.at799@gmail.com",
                 password: Service.CRYPTOGRAPHY.md5("12345678"),
                 gender: "male",
-                role: "admin"
+                role: "admin",
+                softDelete: false
             })
             res.status(201).send(user)
         } catch (err) {
