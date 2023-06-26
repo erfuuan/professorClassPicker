@@ -36,6 +36,23 @@ module.exports = {
         }
     },
 
+    getAllMyClass: async (req, res) => {
+        try {
+            let classes = {}
+            classes = await Service.CRUD.getAll('Class',
+                { softDelete: false, teacherId: req.userId }, ['teacherId'], { 'createdAt': -1 }, { softDelete: 0, createdAt: 0, updatedAt: 0 })
+            if (classes.length == 0) { return resBuilder.success(res, [], '') }
+            classes.forEach(element => {
+                element.registerDate = moment(element.registerDate, 'X').format('jYYYY/jMM/jDD')
+            })
+            return resBuilder.success(res, classes, "")
+        } catch (err) {
+            console.log(err)
+            return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
+        }
+    },
+
+
     getAllLesson: async (req, res) => {
         try {
             let lessons = {}

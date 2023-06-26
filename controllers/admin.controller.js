@@ -26,7 +26,7 @@ module.exports = {
             try {
                 const claass = await Service.CRUD.getAll('Class',
                     { softDelete: false },
-                    "",
+                    ['teacherId'],
                     { 'createdAt': -1 }, { softDelete: 0, createdAt: 0, updatedAt: 0 })
                 if (claass.length == 0) { return resBuilder.success(res, [], '') }
                 claass.forEach(element => {
