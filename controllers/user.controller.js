@@ -82,7 +82,7 @@ module.exports = {
         //     }
         // }
 
-        await Service.CRUD.updateById('Class', { teacherId: req.userId }, req.params.classId, [], "")
+        await Service.CRUD.updateById('Class', { teacherId: req.userId, status: "reserved" }, req.params.classId, [], "")
         const classExistAssigend = await Service.CRUD.findById('Class', req.params.classId, ['teacherId'])
 
         resBuilder.success(res, classExistAssigend, "کلاس با موفقیت به شما تخصیص داده شد.")
