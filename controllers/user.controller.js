@@ -24,7 +24,7 @@ module.exports = {
         try {
             let classes = {}
             classes = await Service.CRUD.getAll('Class',
-                { softDelete: false }, "", { 'createdAt': -1 }, { softDelete: 0, createdAt: 0, updatedAt: 0 })
+                { softDelete: false }, ['teacherId'], { 'createdAt': -1 }, { softDelete: 0, createdAt: 0, updatedAt: 0 })
             if (classes.length == 0) { return resBuilder.success(res, [], '') }
             classes.forEach(element => {
                 element.registerDate = moment(element.registerDate, 'X').format('jYYYY/jMM/jDD')
@@ -35,6 +35,23 @@ module.exports = {
             return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
         }
     },
+
+    getAllMyClass: async (req, res) => {
+        try {
+            let classes = {}
+            classes = await Service.CRUD.getAll('Class',
+                { softDelete: false, teacherId: req.userId }, ['teacherId'], { 'createdAt': -1 }, { softDelete: 0, createdAt: 0, updatedAt: 0 })
+            if (classes.length == 0) { return resBuilder.success(res, [], '') }
+            classes.forEach(element => {
+                element.registerDate = moment(element.registerDate, 'X').format('jYYYY/jMM/jDD')
+            })
+            return resBuilder.success(res, classes, "")
+        } catch (err) {
+            console.log(err)
+            return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
+        }
+    },
+
 
     getAllLesson: async (req, res) => {
         try {
@@ -56,17 +73,17 @@ module.exports = {
     submitClass: async (req, res) => {
         const classExist = await Service.CRUD.findById('Class', req.params.classId, "")
         if (!classExist) { return resBuilder.notFound(res, "کلاسی با این شناسه یافت نشد") }
-        const checkClassTimeConflict = await Service.CRUD.find('Class', { teacherId: req.userId }, [], "", "")
-        if (checkClassTimeConflict) {
-            console.log(checkClassTimeConflict)
-            if (checkClassTimeConflict[0].day == classExist.day) {
-                console.log("class in One Day")
+        // const checkClassTimeConflict = await Service.CRUD.find('Class', { teacherId: req.userId }, [], "", "")
+        // if (checkClassTimeConflict) {
+        //     console.log(checkClassTimeConflict)
+        //     if (checkClassTimeConflict[0].day == classExist.day) {
+        //         console.log("class in One Day")
 
-            }
-        }
+        //     }
+        // }
 
-        await Service.CRUD.updateById('Class', { teacherId: req.userId }, req.body.classId, [], "")
-        const classExistAssigend = await Service.CRUD.findById('Class', req.body.classId, ['teacherId'])
+        await Service.CRUD.updateById('Class', { teacherId: req.userId, status: "reserved" }, req.params.classId, [], "")
+        const classExistAssigend = await Service.CRUD.findById('Class', req.params.classId, ['teacherId'])
 
         resBuilder.success(res, classExistAssigend, "کلاس با موفقیت به شما تخصیص داده شد.")
 
