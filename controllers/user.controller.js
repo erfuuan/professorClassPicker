@@ -13,6 +13,8 @@ module.exports = {
             delete classData.createdAt
             delete classData.updatedAt
             classData.registerDate = moment(classData.registerDate, 'X').format('jYYYY/jMM/jDD')
+            classData.startTime = moment(classData.startTime, 'X').format('HH:mm')
+            classData.endTime = moment(classData.endTime, 'X').format('HH:mm')
             return resBuilder.success(res, classData, "")
         } catch (error) {
             console.log("error for find a post === > ", error)
@@ -28,6 +30,8 @@ module.exports = {
             if (classes.length == 0) { return resBuilder.success(res, [], '') }
             classes.forEach(element => {
                 element.registerDate = moment(element.registerDate, 'X').format('jYYYY/jMM/jDD')
+                element.startTime = moment(element.startTime, 'X').format('HH:mm')
+                element.endTime = moment(element.endTime, 'X').format('HH:mm')
             })
             return resBuilder.success(res, classes, "")
         } catch (err) {
@@ -44,6 +48,8 @@ module.exports = {
             if (classes.length == 0) { return resBuilder.success(res, [], '') }
             classes.forEach(element => {
                 element.registerDate = moment(element.registerDate, 'X').format('jYYYY/jMM/jDD')
+                element.startTime = moment(element.startTime, 'X').format('HH:mm')
+                element.endTime = moment(element.endTime, 'X').format('HH:mm')
             })
             return resBuilder.success(res, classes, "")
         } catch (err) {

@@ -31,8 +31,8 @@ module.exports = {
                 if (claass.length == 0) { return resBuilder.success(res, [], '') }
                 claass.forEach(element => {
                     element.registerDate = moment(element.registerDate, 'X').format('jYYYY/jMM/jDD HH:mm')
-                    element.startTime = moment(element.startTime, 'X').format('jYYYY/jMM/jDD HH:mm')
-                    element.endTime = moment(element.endTime, 'X').format('jYYYY/jMM/jDD HH:mm')
+                    element.startTime = moment(element.startTime, 'X').format('HH:mm')
+                    element.endTime = moment(element.endTime, 'X').format('HH:mm')
                 });
                 return resBuilder.success(res, claass, "")
             } catch (err) {
