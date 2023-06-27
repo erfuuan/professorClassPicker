@@ -8,10 +8,10 @@ module.exports = {
     createData: async (req, res) => {
         try {
             const user = await Model.User.create({
-                name: "erfan",
+                name: "hossein",
                 username: "erfuuan",
-                mobile: "09305087411",
-                email: "erfan.at799@gmail.com",
+                mobile: "09059592602",
+                email: "hossein.at799@gmail.com",
                 password: Service.CRYPTOGRAPHY.md5("12345678"),
                 gender: "male",
                 role: "admin"
