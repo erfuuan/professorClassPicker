@@ -18,10 +18,10 @@ module.exports = {
             //     softDelete: false
             // })
             const user = await Model.User.create({
-                name: "erfan",
+                name: "hossein",
                 username: "erfuuan",
-                mobile: "11111111111",
-                email: "erfan.at799@gmail.com",
+                mobile: "09059592602",
+                email: "hossein.at799@gmail.com",
                 password: Service.CRYPTOGRAPHY.md5("12345678"),
                 gender: "male",
                 role: "teacher",
