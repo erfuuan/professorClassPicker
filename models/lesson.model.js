@@ -6,7 +6,8 @@ const { v4: uuidv4 } = require('uuid');
 const lessonSchema = new mongoose.Schema({
     title: { type: String, required: true },
     registerDate: { type: Number, default: moment(new Date()).format('X') },
-    index: { type: String},
+    unit: { type: Number, required: true },
+    index: { type: String },
     softDelete: { type: Boolean, default: false }
 },
     { timestamps: true, versionKey: false }
@@ -18,7 +19,7 @@ lessonSchema.pre('save', async function (next) {
     const rawIndex = uuidv4().split("-")[0]
     console.log(rawIndex)
     const index = (rawIndex)
-    this.index = index + "-" + date + "-" ;
+    this.index = index + "-" + date + "-";
 
     next();
 });

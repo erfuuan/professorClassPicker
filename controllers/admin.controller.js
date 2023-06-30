@@ -41,6 +41,18 @@ module.exports = {
             }
         },
         create: async (req, res) => {
+            if (!req.body.title) { return resBuilder.badRequest(res, 'ارسال موضوع کلاس الزامی است') }
+            if (!req.body.startTime) { return resBuilder.badRequest(res, 'ارسال زمان شروع کلاس الزامی است') }
+            if (!req.body.endTime) { return resBuilder.badRequest(res, 'ارسال زمان پایان کلاس الزامی است') }
+            if (!req.body.day) { return resBuilder.badRequest(res, 'ارسال روز کلاس الزامی است') }
+            if (!req.body.gender) { return resBuilder.badRequest(res, 'ارسال جنسیت شاگردان کلاس الزامی است') }
+            if (req.body.gender != 'boy' && req.body.gender != 'girl' && req.body.gender != 'all') { return resBuilder.badRequest(res, ' باشد ارسال جنسیت شاگردان کلاس باید یکی از موارد ][bo,girl,all] است') }
+
+            // if (req.body.gender == 'boy'){
+            //     console.log("sen")
+            // }
+
+
             // const result = Schema.playListValidation.createSchema.validate(req.body)
             // if (result.error) { return resBuilder.badRequest(res, req.body, result.error.message) }
             try {
@@ -100,6 +112,23 @@ module.exports = {
                 return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
             }
         },
+
+        unSubmitClass: async (req, res) => {
+            try {
+                if (!req.body.teacherId) { return resBuilder.badRequest(res, 'ارسال شناسه استاد الزامی است') }
+                if (!req.body.classId) { return resBuilder.badRequest(res, 'ارسال شناسه کلاس الزامی است') }
+                const classExist = await Service.CRUD.findById('Class', req.body.classId, "")
+                if (!classExist) { return resBuilder.notFound(res, "کلاسی با این شناسه یافت نشد") }
+                const userExist = await Service.CRUD.findById('User', req.body.teacherId, "")
+                if (!userExist) { return resBuilder.notFound(res, "استادی با این شناسه یافت نشد") }
+                await Service.CRUD.updateById('Class', { teacherId: undefined, status: "open" }, req.body.classId, [], "")
+                const classExistAssigend = await Service.CRUD.findById('Class', req.body.classId, ['teacherId'])
+                resBuilder.success(res, classExistAssigend, "کلاس با موفقیت از تخصیص استاد برداشته شد.")
+            } catch (err) {
+                console.log(err)
+                return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
+            }
+        }
     },
     user: {
         getOne: async (req, res) => {
@@ -128,13 +157,17 @@ module.exports = {
             }
         },
         create: async (req, res) => {
+            if (!req.body.email) { return resBuilder.badRequest(res, "ارسال ایمیل اجباری میباشد") }
+            if (!req.body.mobile) { return resBuilder.badRequest(res, "ارسال شماره موبایل اجباری میباشد") }
+            if (!req.body.password) { return resBuilder.badRequest(res, "ارسال پسورد اجباری میباشد") }
             // const result = Schema.playListValidation.createSchema.validate(req.body)
             // if (result.error) { return resBuilder.badRequest(res, req.body, result.error.message) }
             try {
                 // const data = await Joi.attempt(result.value, Schema.playListValidation.createSchema)
                 // data.authorId = req.userData._id
                 // const newUser = await Service.CRUD.create("Class", data)
-                req.body.role = "teacher"
+                req.body.password = Service.CRYPTOGRAPHY.md5(req.body.password),
+                    req.body.role = "teacher"
                 const newUser = await Service.CRUD.create("User", req.body)
 
                 return resBuilder.created(res, newUser, " استاد شما با موفقیت ایجاد شد.")
@@ -151,6 +184,7 @@ module.exports = {
                 const userExist = await Service.CRUD.findById('User', req.params.id, [])
                 if (!userExist) { return resBuilder.notFound(res, 'استاد یافت نشد') }
                 // const data = await Joi.attempt(result.value, Schema.playListValidation.editSchema)
+                req.body.password = req.body.password ? Service.CRYPTOGRAPHY.md5(req.body.password) : undefined
                 const data = req.body
                 const updatedClass = await Service.CRUD.updateById("User",
                     data,
@@ -204,6 +238,7 @@ module.exports = {
         },
 
         create: async (req, res) => {
+            if (!req.body.unit) { return resBuilder.badRequest(res, 'ارسال واحد درس الزامی است') }
             // const result = Schema.playListValidation.createSchema.validate(req.body)
             // if (result.error) { return resBuilder.badRequest(res, req.body, result.error.message) }
             try {
@@ -211,19 +246,12 @@ module.exports = {
                 // data.authorId = req.userData._id
                 // const newClass = await Service.CRUD.create("Class", data)
 
-
-
-
                 //     const lessonExist = await Service.CRUD.getAll('Lesson',
                 //     { softDelete: false, title: req.body.title }, "")
 
                 // if (claassExist.length) {
                 //      return resBuilder.conflict(res, req.body, "کلاسی با این عنوان در سامانه وجود دارد.")                    
                 // }
-
-
-
-
 
                 const newLesson = await Service.CRUD.create("Lesson", req.body)
                 return resBuilder.created(res, newLesson, " درس شما با موفقیت ایجاد شد.")

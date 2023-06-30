@@ -73,6 +73,9 @@ module.exports = {
     submitClass: async (req, res) => {
         const classExist = await Service.CRUD.findById('Class', req.params.classId, "")
         if (!classExist) { return resBuilder.notFound(res, "کلاسی با این شناسه یافت نشد") }
+        if (classExist.status == 'reserved') {
+            return resBuilder.conflict(res, "",'این کلاس قبلا تخصیص داده شده است')
+        }
         // const checkClassTimeConflict = await Service.CRUD.find('Class', { teacherId: req.userId }, [], "", "")
         // if (checkClassTimeConflict) {
         //     console.log(checkClassTimeConflict)
@@ -87,6 +90,21 @@ module.exports = {
 
         resBuilder.success(res, classExistAssigend, "کلاس با موفقیت به شما تخصیص داده شد.")
 
+    },
+
+    unSubmitClass: async (req, res) => {
+        try {
+            if (!req.params.classId) { return resBuilder.badRequest(res, 'ارسال شناسه کلاس الزامی است') }
+            const classExist = await Service.CRUD.findById('Class', req.params.classId, "")
+            if (!classExist) { return resBuilder.notFound(res, "کلاسی با این شناسه یافت نشد") }
+            if (classExist.teacherId != req.userId) { return resBuilder.conflict(res,"",'شما نمیتوانید کلاسی که به استاد دیگر تخصیص داده شده است را تغییر وضعیت دهید') }
+            await Service.CRUD.updateById('Class', { teacherId: undefined, status: "open" }, req.params.classId, [], "")
+            const classExistAssigend = await Service.CRUD.findById('Class', req.body.classId, ['teacherId'])
+            resBuilder.success(res, classExistAssigend, "کلاس با موفقیت از تخصیص استاد برداشته شد.")
+        } catch (err) {
+            console.log(err)
+            return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
+        }
     },
 
     getProfile: async (req, res) => {
@@ -106,6 +124,7 @@ module.exports = {
         }
 
     },
+
     editProfile: async (req, res) => {
         // const result = Schema.playListValidation.editSchema.validate(req.body)
         // if (result.error) { return resBuilder.badRequest(res, req.body, result.error.message) }
@@ -113,6 +132,8 @@ module.exports = {
             const userExist = await Service.CRUD.findById('User', req.userId, [])
             if (!userExist) { return resBuilder.notFound(res, "خطا کاربر وجود ندارد") }
             // const data = await Joi.attempt(result.value, Schema.playListValidation.editSchema)
+            req.body.password = req.body.password ? Service.CRYPTOGRAPHY.md5(req.body.password) : undefined
+            req.body.role = 'teacher'
             const data = req.body
             const updatedUser = await Service.CRUD.updateById("User",
                 data,
