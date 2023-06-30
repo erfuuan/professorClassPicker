@@ -20,12 +20,12 @@
 							"urlencoded": [
 								{
 									"key": "mobile",
-									"value": "11111111111",
+									"value": "44444444444",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "12345678",
+									"value": "44444444444",
 									"type": "text"
 								},
 								{
@@ -168,13 +168,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MzgxNmQ0NjcyMjRlOWRiZTIxMzQ3YSIsImlhdCI6MTY4MTQwMTk5NCwiZXhwIjoxNjkwMDQxOTk0fQ.glVD-IUyT4bX5j4iiGOPJz_N6iumocbj5Lng-GIYsCA",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OWVmMWZmMzVhZTk0ZjYzMDM2OTIwZiIsImlhdCI6MTY4ODEzODI0NiwiZXhwIjoxNjk2Nzc4MjQ2fQ.6oqn5XGq-XYlI9rOl0BBrw3oVu1Hu-3pPBadkIJLu4s",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"erfannnn\",\n    \"mobile\": 9305087411,\n    \"role\": \"admin\",\n    \"email\": \"erfan.at799@gmail.com\"\n}",
+							"raw": "{\n    \"name\": \"dsdfd\",\n    \"mobile\": 33333333333,\n    \"password\":\"33333333333\",\n    \"role\": \"admin\",\n    \"email\": \"dfyetyt799@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -231,12 +231,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OTlkMjFlMWVkNWQ4YWI0YjQ4ODE4NCIsImlhdCI6MTY4NzgwMjQwOCwiZXhwIjoxNjk2NDQyNDA4fQ.GYL_Vb3NJ76LuY_B5R7hQW1luu94mL2cVNdafO-6r0c",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OWVmMGZjNWZlMjcyNjQ1ZDAwN2NhMyIsImlhdCI6MTY4ODE0MDYzMiwiZXhwIjoxNjk2NzgwNjMyfQ.gsvP6yeQwD64zID6LqsyWjpXf-bq1aA7RRU7Jh_wbD0",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:5000/api/v1/user/submitClass/6499d2161ed5d8ab4b488182",
+							"raw": "localhost:5000/api/v1/user/submitClass/6499cf5fcf4a44dbd79c77e4",
 							"host": [
 								"localhost"
 							],
@@ -246,7 +246,35 @@
 								"v1",
 								"user",
 								"submitClass",
-								"6499d2161ed5d8ab4b488182"
+								"6499cf5fcf4a44dbd79c77e4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unSubmit class",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OWVmMGZjNWZlMjcyNjQ1ZDAwN2NhMyIsImlhdCI6MTY4ODE0MDYzMiwiZXhwIjoxNjk2NzgwNjMyfQ.gsvP6yeQwD64zID6LqsyWjpXf-bq1aA7RRU7Jh_wbD0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/api/v1/user/unSubmitClass/6499cf5fcf4a44dbd79c77e4",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"unSubmitClass",
+								"6499cf5fcf4a44dbd79c77e4"
 							]
 						}
 					},
@@ -350,7 +378,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OTljY2ZkNTM4NzM5ODA1OWM0MmFjZSIsImlhdCI6MTY4NzgwMTQ0NywiZXhwIjoxNjk2NDQxNDQ3fQ.4huBTgV-nh5aMXhDL2vx-tzSiNq3fkR9dyQn_hy-l-M",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OTljZGZhNWM0NTI4ODgzN2QyYmI3ZCIsImlhdCI6MTY4ODE0MjIxMiwiZXhwIjoxNjk2NzgyMjEyfQ.Hq_YtIlr3B9q0h8wm8WoLmTtMtG90gJ4X7Dxc6gquUM",
 										"type": "text"
 									},
 									{
@@ -375,7 +403,22 @@
 										},
 										{
 											"key": "gender",
-											"value": "boy",
+											"value": "all",
+											"type": "text"
+										},
+										{
+											"key": "startTime",
+											"value": "03:10",
+											"type": "text"
+										},
+										{
+											"key": "endTime",
+											"value": "05:10",
+											"type": "text"
+										},
+										{
+											"key": "day",
+											"value": "Saturday",
 											"type": "text"
 										}
 									]
@@ -466,6 +509,44 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "unSubmit class for user",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OTljZGZhNWM0NTI4ODgzN2QyYmI3ZCIsImlhdCI6MTY4ODE0MDg0MywiZXhwIjoxNjk2NzgwODQzfQ.8A5xeqYZYhyDEEtkDKdEIYH2vpFOHfsLGEG4HNYI4SI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"classId\": \"6499cf5fcf4a44dbd79c77e4\",\n    \"teacherId\": \"649ef0fc5fe272645d007ca3\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:5000/api/v1/admin/class/unSubmit/Class",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"class",
+										"unSubmit",
+										"Class"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -479,7 +560,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MzgxNmQ0NjcyMjRlOWRiZTIxMzQ3YSIsImlhdCI6MTY4NjU1MjExNywiZXhwIjoxNjk1MTkyMTE3fQ.uIYRULH1EV6Wn3kZ9jOjJ7YsfhLjUDQfW8OkFQ-5AK4",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OTljZGZhNWM0NTI4ODgzN2QyYmI3ZCIsImlhdCI6MTY4ODEzODEzMCwiZXhwIjoxNjk2Nzc4MTMwfQ.Rvhtjvgf74T9OvO6M9UsKCS6ZghZ17rGZY7vffTNGxY",
 										"type": "text"
 									}
 								],
@@ -493,7 +574,7 @@
 										},
 										{
 											"key": "mobile",
-											"value": "09305087411",
+											"value": "33333333333",
 											"type": "text"
 										},
 										{
@@ -503,14 +584,13 @@
 										},
 										{
 											"key": "email",
-											"value": "erfan.at799@gmail.com",
-											"type": "text",
-											"disabled": true
+											"value": "xdfsdsdtht799@gmail.com",
+											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "localhost:5000/api/v1/admin/user",
+									"raw": "localhost:5000/api/v1/admin/user/",
 									"host": [
 										"localhost"
 									],
@@ -519,7 +599,8 @@
 										"api",
 										"v1",
 										"admin",
-										"user"
+										"user",
+										""
 									]
 								}
 							},
@@ -532,7 +613,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MzgxNmQ0NjcyMjRlOWRiZTIxMzQ3YSIsImlhdCI6MTY4Mjk2NzY5OSwiZXhwIjoxNjkxNjA3Njk5fQ.EPtLQI-fWc9xXYkHshN25sxH3kHyWbgYJWEPgMdF4tw",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OWVlZWExZTkwNzMxODk0YzI2MGQzNCIsImlhdCI6MTY4ODEzNzM3OSwiZXhwIjoxNjk2Nzc3Mzc5fQ.KZWobyQ5YIATQcZOvUrYjGohGAaMeHhneyMkf0qoK7g",
 										"type": "text"
 									}
 								],
@@ -587,7 +668,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyMTg4MDRlZmE2MDVkYWY4NTg4NCIsImlhdCI6MTY4MDgxMzU2OSwiZXhwIjoxNjg5NDUzNTY5fQ.aHs1SjHpoLT75CxtyVPOwhiJ0g-FeVdqAKG4i-HAgxc",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OWVlZWExZTkwNzMxODk0YzI2MGQzNCIsImlhdCI6MTY4ODEzNzM3OSwiZXhwIjoxNjk2Nzc3Mzc5fQ.KZWobyQ5YIATQcZOvUrYjGohGAaMeHhneyMkf0qoK7g",
 										"type": "text"
 									}
 								],
@@ -601,18 +682,18 @@
 										},
 										{
 											"key": "mobile",
-											"value": "111111111114",
+											"value": "11111111111",
 											"type": "text"
 										},
 										{
 											"key": "password",
-											"value": "1234",
+											"value": "87654321",
 											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "localhost:5000/api/v1/admin/user/642f2e5983b2f6b8f04d96fc",
+									"raw": "localhost:5000/api/v1/admin/user/6499d21e1ed5d8ab4b488184",
 									"host": [
 										"localhost"
 									],
@@ -622,7 +703,7 @@
 										"v1",
 										"admin",
 										"user",
-										"642f2e5983b2f6b8f04d96fc"
+										"6499d21e1ed5d8ab4b488184"
 									]
 								}
 							},
@@ -835,6 +916,94 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "add admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OTljY2ZkNTM4NzM5ODA1OWM0MmFjZSIsImlhdCI6MTY4ODEzNzEwMiwiZXhwIjoxNjk2Nzc3MTAyfQ.TJrbPbIoNkM6j-0gNaAd3vHsy02DNsPUgHxoigwpaZ0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "sdgsdfgfg",
+									"type": "text"
+								},
+								{
+									"key": "mobile",
+									"value": "45735635",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "sdgsfgsfg@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/admin/addAdmin",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"addAdmin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editProfile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OTljZGZhNWM0NTI4ODgzN2QyYmI3ZCIsImlhdCI6MTY4ODEzODQ5NCwiZXhwIjoxNjk2Nzc4NDk0fQ.CE4reaYcqin3noABD2sC1T7wv5Mk9XfsFFFrmOBd_ig",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"yoyoy\",\n    \"mobile\":\"44444444444\",\n    \"password\":\"44444444444\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/admin/editProfile",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"editProfile"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
