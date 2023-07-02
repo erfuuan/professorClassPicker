@@ -115,12 +115,9 @@ module.exports = {
 
         unSubmitClass: async (req, res) => {
             try {
-                if (!req.body.teacherId) { return resBuilder.badRequest(res, 'ارسال شناسه استاد الزامی است') }
                 if (!req.body.classId) { return resBuilder.badRequest(res, 'ارسال شناسه کلاس الزامی است') }
                 const classExist = await Service.CRUD.findById('Class', req.body.classId, "")
                 if (!classExist) { return resBuilder.notFound(res, "کلاسی با این شناسه یافت نشد") }
-                const userExist = await Service.CRUD.findById('User', req.body.teacherId, "")
-                if (!userExist) { return resBuilder.notFound(res, "استادی با این شناسه یافت نشد") }
                 await Service.CRUD.updateById('Class', { teacherId: undefined, status: "open" }, req.body.classId, [], "")
                 const classExistAssigend = await Service.CRUD.findById('Class', req.body.classId, ['teacherId'])
                 resBuilder.success(res, classExistAssigend, "کلاس با موفقیت از تخصیص استاد برداشته شد.")
