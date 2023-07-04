@@ -87,8 +87,15 @@ module.exports = {
         if (checkClassTimeConflict[0] && checkClassTimeConflict[0]._id != req.params.classId) {
             if (checkClassTimeConflict[0].day == classExist.day) {
                 console.log("class in One Day")
-                const timeMiangin = classExist.startTime + classExist.endTime / 2
-                if (checkClassTimeConflict[0].startTime < timeMiangin && classExist.startTime < checkClassTimeConflict[0].startTime) {
+                // const timeMiangin = classExist.startTime + classExist.endTime / 2
+                // if (checkClassTimeConflict[0].startTime < timeMiangin && classExist.startTime < checkClassTimeConflict[0].startTime) {
+                //     return resBuilder.conflict(res, "این کلاس با زمان کلاس هایی ک برداشتید همزمان است")
+                // }
+
+                const bigStartDate = classExist.startTime > checkClassTimeConflict[0].startTime ? classExist.startTime : checkClassTimeConflict[0].startTime
+                const smallStartDate = classExist.startTime < checkClassTimeConflict[0].startTime ? classExist.startTime : checkClassTimeConflict[0].startTime
+                const smallEndDate = classExist.endTime < checkClassTimeConflict[0].endTime ? classExist.endTime : checkClassTimeConflict[0].endTime
+                if (smallStartDate < bigStartDate && bigStartDate < smallEndDate) {
                     return resBuilder.conflict(res, "این کلاس با زمان کلاس هایی ک برداشتید همزمان است")
                 }
             }
