@@ -42,6 +42,7 @@ module.exports = {
         },
         create: async (req, res) => {
             if (!req.body.unit) { return resBuilder.badRequest(res, 'ارسال واحد کلاس الزامی است') }
+            if(!req.body.capacity){return resBuilder.badRequest(res, 'ارسال ظرفیت کلاس الزامی است')}
             if (!req.body.title) { return resBuilder.badRequest(res, 'ارسال موضوع کلاس الزامی است') }
             if (!req.body.startTime) { return resBuilder.badRequest(res, 'ارسال زمان شروع کلاس الزامی است') }
             if (!req.body.endTime) { return resBuilder.badRequest(res, 'ارسال زمان پایان کلاس الزامی است') }
@@ -82,6 +83,19 @@ module.exports = {
         update: async (req, res) => {
             // const result = Schema.playListValidation.editSchema.validate(req.body)
             // if (result.error) { return resBuilder.badRequest(res, req.body, result.error.message) }
+            if(!req.body.capacity){return resBuilder.badRequest(res, 'ارسال ظرفیت کلاس الزامی است')}
+            if (!req.body.unit) { return resBuilder.badRequest(res, 'ارسال واحد کلاس الزامی است') }
+            if (!req.body.title) { return resBuilder.badRequest(res, 'ارسال موضوع کلاس الزامی است') }
+            if (!req.body.startTime) { return resBuilder.badRequest(res, 'ارسال زمان شروع کلاس الزامی است') }
+            if (!req.body.endTime) { return resBuilder.badRequest(res, 'ارسال زمان پایان کلاس الزامی است') }
+            if (!req.body.day) { return resBuilder.badRequest(res, 'ارسال روز کلاس الزامی است') }
+            if (!req.body.gender) { return resBuilder.badRequest(res, 'ارسال جنسیت شاگردان کلاس الزامی است') }
+            if (req.body.gender != 'boy' && req.body.gender != 'girl' && req.body.gender != 'all') {
+                return resBuilder.badRequest(res, ' باشد ارسال جنسیت شاگردان کلاس باید یکی از موارد ][bo,girl,all] است')
+            }
+            req.body.status = "open"
+            req.body.startTime ? req.body.startTime = moment(req.body.startTime, "HH:mm").format("X") : undefined
+            req.body.endTime ? req.body.endTime = moment(req.body.endTime, "HH:mm").format("X") : undefined
             try {
                 const classExist = await Service.CRUD.findById('Class', req.params.id, [])
                 if (!classExist) { return resBuilder.notFound(res, 'کلاس یافت نشد') }
@@ -102,10 +116,8 @@ module.exports = {
         },
         delete: async (req, res) => {
             try {
-                const claassExist = await Service.CRUD.getAll('Class',
-                    { softDelete: false, title: req.body.title }, "")
-                if (!claassExist.length) { return resBuilder.notFound(res, "کلاسی با این عنوان در سامانه وجود ندارد.") }
-
+                const claassExist = await Service.CRUD.findById('Class', req.params.id, "")
+                if (!claassExist) { return resBuilder.notFound(res, "کلاسی با این عنوان در سامانه وجود ندارد.") }
                 await Service.CRUD.delete("Class", req.params.id, { softDelete: true })
                 return resBuilder.success(res, "", ". کلاس با موفقیت حذف شد")
             } catch (err) {

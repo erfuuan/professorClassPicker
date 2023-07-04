@@ -10,7 +10,7 @@ router.get("/class", controller.admin.class.getAll)
 router.put("/class/:id", controller.admin.class.update)
 router.post("/class", controller.admin.class.create)
 router.delete("/class/:id", controller.admin.class.delete)
-router.put('/class/unSubmit/Class',controller.admin.class.unSubmitClass)
+router.put('/class/unSubmit/Class', controller.admin.class.unSubmitClass)
 
 router.get("/lesson/:id", controller.admin.lesson.getOne)
 router.get("/lesson", controller.admin.lesson.getAll)
@@ -39,26 +39,36 @@ router.post('/addAdmin', async (req, res) => {
     }
 })
 
+router.get('/adminList', async (req, res) => {
+    try {
+        let adminList = await Service.CRUD.getAll('User', { role: 'admin' }, [])
+        return resBuilder.created(res, adminList)
+    } catch (err) {
+        console.log(err)
+        return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
+    }
+
+})
 
 router.put('/editProfile', async (req, res) => {
-     // const result = Schema.playListValidation.editSchema.validate(req.body)
-            // if (result.error) { return resBuilder.badRequest(res, req.body, result.error.message) }
-            try {
-                const userExist = await Service.CRUD.findById('User', req.userId, [])
-                if (!userExist) { return resBuilder.notFound(res, 'استاد یافت نشد') }
-                // const data = await Joi.attempt(result.value, Schema.playListValidation.editSchema)
-                req.body.password = req.body.password ? Service.CRYPTOGRAPHY.md5(req.body.password) : undefined
-                const data = req.body
-                const updatedClass = await Service.CRUD.updateById("User",
-                    data,
-                    req.userId,
-                    [],
-                    { softDelete: 0 })
-                return resBuilder.success(res, updatedClass, ".استاد  شما با موفقیت ویرایش شد")
-            } catch (err) {
-                console.log(err)
-                return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
-            }
+    // const result = Schema.playListValidation.editSchema.validate(req.body)
+    // if (result.error) { return resBuilder.badRequest(res, req.body, result.error.message) }
+    try {
+        const userExist = await Service.CRUD.findById('User', req.userId, [])
+        if (!userExist) { return resBuilder.notFound(res, 'استاد یافت نشد') }
+        // const data = await Joi.attempt(result.value, Schema.playListValidation.editSchema)
+        req.body.password = req.body.password ? Service.CRYPTOGRAPHY.md5(req.body.password) : undefined
+        const data = req.body
+        const updatedClass = await Service.CRUD.updateById("User",
+            data,
+            req.userId,
+            [],
+            { softDelete: 0 })
+        return resBuilder.success(res, updatedClass, ".استاد  شما با موفقیت ویرایش شد")
+    } catch (err) {
+        console.log(err)
+        return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
+    }
 })
 
 

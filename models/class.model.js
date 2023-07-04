@@ -17,6 +17,7 @@ const classSchema = new mongoose.Schema({
     gender: { type: String, required: true, enum: ['boy', 'girl', 'all'] },
     day: { type: String, require: true, enum: ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"] },
     unit: { type: Number, required: true },
+    capacity: { type: Number, required: true },
     teacherId: { type: mongoose.Types.ObjectId, ref: 'User', Number },
     index: { type: String },
     softDelete: { type: Boolean, required: true, default: false }
