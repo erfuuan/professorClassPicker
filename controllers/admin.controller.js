@@ -41,6 +41,7 @@ module.exports = {
             }
         },
         create: async (req, res) => {
+            if (!req.body.unit) { return resBuilder.badRequest(res, 'ارسال واحد کلاس الزامی است') }
             if (!req.body.title) { return resBuilder.badRequest(res, 'ارسال موضوع کلاس الزامی است') }
             if (!req.body.startTime) { return resBuilder.badRequest(res, 'ارسال زمان شروع کلاس الزامی است') }
             if (!req.body.endTime) { return resBuilder.badRequest(res, 'ارسال زمان پایان کلاس الزامی است') }
