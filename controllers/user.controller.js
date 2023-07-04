@@ -82,18 +82,19 @@ module.exports = {
         if (classExist.status == 'reserved') {
             return resBuilder.conflict(res, "", 'این کلاس قبلا تخصیص داده شده است')
         }
-        // const checkClassTimeConflict = await Service.CRUD.find('Class', { teacherId: req.userId }, [], "", "")
-        // if (checkClassTimeConflict) {
-        //     console.log(checkClassTimeConflict)
-        //     if (checkClassTimeConflict[0].day == classExist.day) {
-        //         console.log("class in One Day")
-
-        //     }
-        // }
-
+        let checkClassTimeConflict = await Service.CRUD.find('Class', { teacherId: req.userId }, [], "", "")
+        checkClassTimeConflict = checkClassTimeConflict.filter(a => a._id != req.params.classId)
+        if (checkClassTimeConflict[0] && checkClassTimeConflict[0]._id != req.params.classId) {
+            if (checkClassTimeConflict[0].day == classExist.day) {
+                console.log("class in One Day")
+                const timeMiangin = classExist.startTime + classExist.endTime / 2
+                if (checkClassTimeConflict[0].startTime < timeMiangin && classExist.startTime < checkClassTimeConflict[0].startTime) {
+                    return resBuilder.conflict(res, "این کلاس با زمان کلاس هایی ک برداشتید همزمان است")
+                }
+            }
+        }
         await Service.CRUD.updateById('Class', { teacherId: req.userId, status: "reserved" }, req.params.classId, [], "")
         const classExistAssigend = await Service.CRUD.findById('Class', req.params.classId, ['teacherId'])
-
         resBuilder.success(res, classExistAssigend, "کلاس با موفقیت به شما تخصیص داده شد.")
 
     },
@@ -104,7 +105,7 @@ module.exports = {
             const classExist = await Service.CRUD.findById('Class', req.params.classId, "")
             if (!classExist) { return resBuilder.notFound(res, "کلاسی با این شناسه یافت نشد") }
             if (classExist.teacherId != req.userId) { return resBuilder.conflict(res, "", 'شما نمیتوانید کلاسی که به استاد دیگر تخصیص داده شده است را تغییر وضعیت دهید') }
-            await Service.CRUD.updateById('Class', {  teacherId: null, status: "open" }, req.params.classId, [], "")
+            await Service.CRUD.updateById('Class', { teacherId: null, status: "open" }, req.params.classId, [], "")
             const classExistAssigend = await Service.CRUD.findById('Class', req.body.classId, ['teacherId'])
             resBuilder.success(res, classExistAssigend, "کلاس با موفقیت از تخصیص استاد برداشته شد.")
         } catch (err) {

@@ -31,7 +31,6 @@ module.exports = {
     },
 
     checkUserRole: async (req, res, next) => {
-        console.log(req.userData)
         if (req.userData.role == "teacher") {
             return next()
         } else {
