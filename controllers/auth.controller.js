@@ -7,26 +7,26 @@ module.exports = {
 
     createData: async (req, res) => {
         try {
-            // const user = await Model.User.create({
-            //     name: "erfan",
-            //     username: "erfuuan",
-            //     mobile: "09305087411",
-            //     email: "erfan.at799@gmail.com",
-            //     password: Service.CRYPTOGRAPHY.md5("12345678"),
-            //     gender: "male",
-            //     role: "admin",
-            //     softDelete: false
-            // })
             const user = await Model.User.create({
                 name: "hossein",
-                username: "erfuuan",
+                username: "hossein",
                 mobile: "09059592602",
-                email: "hossein.at799@gmail.com",
+                email: "hossein@gmail.com",
                 password: Service.CRYPTOGRAPHY.md5("12345678"),
                 gender: "male",
-                role: "teacher",
+                role: "admin",
                 softDelete: false
             })
+            //  await Model.User.create({
+            //     name: "ali",
+            //     username: "erfuuan",
+            //     mobile: "09059592602",
+            //     email: "hossein.at799@gmail.com",
+            //     password: Service.CRYPTOGRAPHY.md5("12345678"),
+            //     gender: "male",
+            //     role: "teacher",
+            //     softDelete: false
+            // })
             res.status(201).send(user)
         } catch (err) {
             console.log(err)
