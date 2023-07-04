@@ -4,6 +4,7 @@ const controller = require('./../controllers/index')
 const Service = require('../service/index')
 const resBuilder = require('../utils/responseBiulder')
 var moment = require("jalali-moment");
+const responseBiulder = require('../utils/responseBiulder');
 
 router.get("/class/:id", controller.admin.class.getOne)
 router.get("/class", controller.admin.class.getAll)
@@ -55,7 +56,7 @@ router.put('/editProfile', async (req, res) => {
     // if (result.error) { return resBuilder.badRequest(res, req.body, result.error.message) }
     try {
         const userExist = await Service.CRUD.findById('User', req.userId, [])
-        if (!userExist) { return resBuilder.notFound(res, 'استاد یافت نشد') }
+        if (!userExist) { return resBuilder.notFound(res, ' یافت نشد') }
         // const data = await Joi.attempt(result.value, Schema.playListValidation.editSchema)
         req.body.password = req.body.password ? Service.CRYPTOGRAPHY.md5(req.body.password) : undefined
         const data = req.body
@@ -64,13 +65,36 @@ router.put('/editProfile', async (req, res) => {
             req.userId,
             [],
             { softDelete: 0 })
-        return resBuilder.success(res, updatedClass, ".استاد  شما با موفقیت ویرایش شد")
+        return resBuilder.success(res, updatedClass, ".موفقیت ویرایش شد")
     } catch (err) {
         console.log(err)
         return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
     }
 })
 
+
+router.put('/changePassword', async (req, res) => {
+    if (!req.body.oldPass) { return responseBiulder.badRequest(res, "لطفا پسورد قدیمی خود را وارد نمایید") }
+    if (!req.body.newPass) { return responseBiulder.badRequest(res, "لطفا پسورد جدید خود را وارد نمایید") }
+    try {
+        const userExist = await Service.CRUD.findById('User', req.userId, [])
+        if (!userExist) { return resBuilder.notFound(res, ' یافت نشد') }
+        // const data = await Joi.attempt(result.value, Schema.playListValidation.editSchema)
+        // req.body.password = req.body.password ? Service.CRYPTOGRAPHY.md5(req.body.password) : undefined
+        if (Service.CRYPTOGRAPHY.md5(req.body.oldPass) != req.userData.password) {
+            return responseBiulder.conflict(res, "", 'رمز عبور که وازد کردید با رمز شما تطابق ندارد')
+        }
+        const updatedClass = await Service.CRUD.updateById("User",
+            { password: Service.CRYPTOGRAPHY.md5(req.body.newPass) },
+            req.userId,
+            [],
+            { softDelete: 0 })
+        return resBuilder.success(res, updatedClass, ".موفقیت ویرایش شد")
+    } catch (err) {
+        console.log(err)
+        return resBuilder.internal(res, "مشکلی پیش آمده است لطفا با پشتیبانی تماس بگیرید")
+    }
+})
 
 
 module.exports = router
