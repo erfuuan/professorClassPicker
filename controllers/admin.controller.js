@@ -293,7 +293,9 @@ module.exports = {
 
         delete: async (req, res) => {
             try {
-                await Service.CRUD.delete("Lesson", req.params.id, { softDelete: true })
+                // await Service.CRUD.delete("Lesson", req.params.id, { softDelete: true })
+                await Service.CRUD.purgeDelete('Lesson',req.params.id)
+
                 return resBuilder.success(res, "", ". درس با موفقیت حذف شد")
             } catch (err) {
                 console.log(err)

@@ -112,12 +112,11 @@ module.exports = {
             throw err
         }
     },
-    purgeDelete: async (schema, dataId, data) => {
+    purgeDelete: async (schema, dataId) => {
         try {
             const dataSchema = Model[schema]
-            console.log(data)
             await dataSchema.delete
-            // const deletedData=await dataSchema.findByIdAndRemove(dataId)
+            const deletedData=await dataSchema.findByIdAndRemove(dataId)
             // const deletedData = await dataSchema.deleteOne({ _id: dataId })
             return true
         } catch (err) {
