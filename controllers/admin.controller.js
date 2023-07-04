@@ -42,7 +42,7 @@ module.exports = {
         },
         create: async (req, res) => {
             if (!req.body.unit) { return resBuilder.badRequest(res, 'ارسال واحد کلاس الزامی است') }
-            if(!req.body.capacity){return resBuilder.badRequest(res, 'ارسال ظرفیت کلاس الزامی است')}
+            if (!req.body.capacity) { return resBuilder.badRequest(res, 'ارسال ظرفیت کلاس الزامی است') }
             if (!req.body.title) { return resBuilder.badRequest(res, 'ارسال موضوع کلاس الزامی است') }
             if (!req.body.startTime) { return resBuilder.badRequest(res, 'ارسال زمان شروع کلاس الزامی است') }
             if (!req.body.endTime) { return resBuilder.badRequest(res, 'ارسال زمان پایان کلاس الزامی است') }
@@ -83,7 +83,7 @@ module.exports = {
         update: async (req, res) => {
             // const result = Schema.playListValidation.editSchema.validate(req.body)
             // if (result.error) { return resBuilder.badRequest(res, req.body, result.error.message) }
-            if(!req.body.capacity){return resBuilder.badRequest(res, 'ارسال ظرفیت کلاس الزامی است')}
+            if (!req.body.capacity) { return resBuilder.badRequest(res, 'ارسال ظرفیت کلاس الزامی است') }
             if (!req.body.unit) { return resBuilder.badRequest(res, 'ارسال واحد کلاس الزامی است') }
             if (!req.body.title) { return resBuilder.badRequest(res, 'ارسال موضوع کلاس الزامی است') }
             if (!req.body.startTime) { return resBuilder.badRequest(res, 'ارسال زمان شروع کلاس الزامی است') }
@@ -131,7 +131,7 @@ module.exports = {
                 if (!req.body.classId) { return resBuilder.badRequest(res, 'ارسال شناسه کلاس الزامی است') }
                 const classExist = await Service.CRUD.findById('Class', req.body.classId, "")
                 if (!classExist) { return resBuilder.notFound(res, "کلاسی با این شناسه یافت نشد") }
-                await Service.CRUD.updateById('Class', { teacherId: undefined, status: "open" }, req.body.classId, [], "")
+                await Service.CRUD.updateById('Class', { teacherId: null, status: "open" }, req.body.classId, [], "")
                 const classExistAssigend = await Service.CRUD.findById('Class', req.body.classId, ['teacherId'])
                 resBuilder.success(res, classExistAssigend, "کلاس با موفقیت از تخصیص استاد برداشته شد.")
             } catch (err) {

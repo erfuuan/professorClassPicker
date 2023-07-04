@@ -104,7 +104,7 @@ module.exports = {
             const classExist = await Service.CRUD.findById('Class', req.params.classId, "")
             if (!classExist) { return resBuilder.notFound(res, "کلاسی با این شناسه یافت نشد") }
             if (classExist.teacherId != req.userId) { return resBuilder.conflict(res, "", 'شما نمیتوانید کلاسی که به استاد دیگر تخصیص داده شده است را تغییر وضعیت دهید') }
-            await Service.CRUD.updateById('Class', { teacherId: undefined, status: "open" }, req.params.classId, [], "")
+            await Service.CRUD.updateById('Class', {  teacherId: null, status: "open" }, req.params.classId, [], "")
             const classExistAssigend = await Service.CRUD.findById('Class', req.body.classId, ['teacherId'])
             resBuilder.success(res, classExistAssigend, "کلاس با موفقیت از تخصیص استاد برداشته شد.")
         } catch (err) {
