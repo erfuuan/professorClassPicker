@@ -4,7 +4,7 @@
 		"name": "professorclasspicker",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "16025267",
-		"_collection_link": "https://web.postman.co/workspace/professorclasspicker~2ba5f462-a304-4c98-88af-bfe238625069/collection/16025267-ffa81212-4a4f-417b-a44c-db9c21be8a60?source=collection_link"
+		"_collection_link": "https://zeblin.postman.co/workspace/professorclasspicker~2ba5f462-a304-4c98-88af-bfe238625069/collection/16025267-ffa81212-4a4f-417b-a44c-db9c21be8a60?action=share&creator=16025267&source=collection_link"
 	},
 	"item": [
 		{
@@ -20,12 +20,12 @@
 							"urlencoded": [
 								{
 									"key": "mobile",
-									"value": "44444444444",
+									"value": "22222222222",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "44444444444",
+									"value": "12345678",
 									"type": "text"
 								},
 								{
@@ -259,7 +259,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OWVmMGZjNWZlMjcyNjQ1ZDAwN2NhMyIsImlhdCI6MTY4ODE0MDYzMiwiZXhwIjoxNjk2NzgwNjMyfQ.gsvP6yeQwD64zID6LqsyWjpXf-bq1aA7RRU7Jh_wbD0",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OTljZGZhNWM0NTI4ODgzN2QyYmI3ZCIsImlhdCI6MTY4ODQ5MDMyNCwiZXhwIjoxNjk3MTMwMzI0fQ.IVXteOeuadsgEPNM7qo_fqYJGm2jT83Q2IzC7y1UxHE",
 								"type": "text"
 							}
 						],
@@ -303,6 +303,42 @@
 								"user",
 								"myClass",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changePassword",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OWVmMGZjNWZlMjcyNjQ1ZDAwN2NhMyIsImlhdCI6MTY4ODQ5MDE5MywiZXhwIjoxNjk3MTMwMTkzfQ.yZXaHE2tRApxj9cfwriGkvQ_YnYnMWcuO05na-HvHGQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oldPass\":\"22222222222\",\n    \"newPass\":\"12345678\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/user/changePassword",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"changePassword"
 							]
 						}
 					},
@@ -351,7 +387,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyYzBhMDJmMTFkOWU1NDFhN2M5MiIsImlhdCI6MTY4MTQyNTQxMywiZXhwIjoxNjkwMDY1NDEzfQ.TqPV_6HcZJ3lCnf1fjXtURz4uqeinIYM8QssxmVkKpM",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OTljZGZhNWM0NTI4ODgzN2QyYmI3ZCIsImlhdCI6MTY4ODQ4ODc1MCwiZXhwIjoxNjk3MTI4NzUwfQ.RzT2UHle_ZUmhwRh2xfaieXa20jFra8C3oJJUATzFqc",
 										"type": "text"
 									}
 								],
@@ -420,6 +456,16 @@
 											"key": "day",
 											"value": "Saturday",
 											"type": "text"
+										},
+										{
+											"key": "unit",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "capacity",
+											"value": "45",
+											"type": "text"
 										}
 									]
 								},
@@ -446,7 +492,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0MmYyMTg4MDRlZmE2MDVkYWY4NTg4NCIsImlhdCI6MTY4MDgxMDc4MSwiZXhwIjoxNjg5NDUwNzgxfQ.kjXrLp6XZHLOl1W9KNsLA63JFaYrkiMJhe6WOJKrIpg",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OTljZGZhNWM0NTI4ODgzN2QyYmI3ZCIsImlhdCI6MTY4ODQ4ODc1MCwiZXhwIjoxNjk3MTI4NzUwfQ.RzT2UHle_ZUmhwRh2xfaieXa20jFra8C3oJJUATzFqc",
 										"type": "text"
 									}
 								],
@@ -462,11 +508,31 @@
 											"key": "description",
 											"value": "sex sex sex sex",
 											"type": "text"
+										},
+										{
+											"key": "unit",
+											"value": "4",
+											"type": "text"
+										},
+										{
+											"key": "startTime",
+											"value": "04:10",
+											"type": "text"
+										},
+										{
+											"key": "endTime",
+											"value": "06:10",
+											"type": "text"
+										},
+										{
+											"key": "day",
+											"value": "Saturday",
+											"type": "text"
 										}
 									]
 								},
 								"url": {
-									"raw": "localhost:5000/api/v1/admin/class/642f27c48d6eacfb2dacd077",
+									"raw": "localhost:5000/api/v1/admin/class/649f02c91993224ca5c5e829",
 									"host": [
 										"localhost"
 									],
@@ -476,7 +542,7 @@
 										"v1",
 										"admin",
 										"class",
-										"642f27c48d6eacfb2dacd077"
+										"649f02c91993224ca5c5e829"
 									]
 								}
 							},
@@ -517,7 +583,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OTljZGZhNWM0NTI4ODgzN2QyYmI3ZCIsImlhdCI6MTY4ODE0MDg0MywiZXhwIjoxNjk2NzgwODQzfQ.8A5xeqYZYhyDEEtkDKdEIYH2vpFOHfsLGEG4HNYI4SI",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OTljZGZhNWM0NTI4ODgzN2QyYmI3ZCIsImlhdCI6MTY4ODQ5MDMyNCwiZXhwIjoxNjk3MTMwMzI0fQ.IVXteOeuadsgEPNM7qo_fqYJGm2jT83Q2IzC7y1UxHE",
 										"type": "text"
 									}
 								],
@@ -1000,6 +1066,69 @@
 								"v1",
 								"admin",
 								"editProfile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "admin list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OTljZGZhNWM0NTI4ODgzN2QyYmI3ZCIsImlhdCI6MTY4ODQ4ODc1MCwiZXhwIjoxNjk3MTI4NzUwfQ.RzT2UHle_ZUmhwRh2xfaieXa20jFra8C3oJJUATzFqc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:5000/api/v1/admin/adminList",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"adminList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changePassword",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjY0OTljZGZhNWM0NTI4ODgzN2QyYmI3ZCIsImlhdCI6MTY4ODQ4ODc1MCwiZXhwIjoxNjk3MTI4NzUwfQ.RzT2UHle_ZUmhwRh2xfaieXa20jFra8C3oJJUATzFqc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oldPass\":\"123456789\",\n    \"newPass\":\"12345678\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:5000/api/v1/admin/changePassword",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"changePassword"
 							]
 						}
 					},
